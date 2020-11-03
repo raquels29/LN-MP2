@@ -1,0 +1,6 @@
+0	1	um	    1
+0	1	dois	2
+0	1	uma	    1
+0	1	duas	2
+1	0	eps	eps
+1

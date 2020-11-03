@@ -1,0 +1,6 @@
+0	1	um	um
+1	2	um	um
+2	3	dois	dois
+3	4	duas	duas
+4	5	uma	uma
+5
