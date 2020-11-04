@@ -1,5 +1,0 @@
-0	1	vinte	vinte
-1	2	e		e
-2	3	uma		uma
-3	4	hora	hora
-4
