@@ -1,0 +1,5 @@
+0	1	vinte	vinte
+1	2	e	e
+2	3	oito	oito
+3	4	minutos	minutos
+4

@@ -1,0 +1,3 @@
+0	1	tres	tres
+1	2	quartos	quartos
+2
