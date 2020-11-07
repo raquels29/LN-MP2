@@ -11,7 +11,14 @@ tests = [
 	"meia",
 	"um quarto",
 	"tres quartos",
-	"dois quartos"	
+	"dois quartos",
+	"dez horas e quinze",
+	"dez e quinze minutos",
+	"dez horas e quinze minutos",
+	"dez",
+	"dez e um quarto",
+	"dez e meia",
+	"1 0 : 1 5"	
 ]
 
 # for each of the motherfucking symbols above
