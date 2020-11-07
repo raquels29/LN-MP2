@@ -2,11 +2,13 @@
 tests = [
 	"uma",
 	"tres horas",
+	"catorze horas",
 	"vinte e uma hora",
 	"um",
 	"vinte e oito minutos",
 	"quarenta e tres",
 	"dois minutos",
+	"meia",
 	"um quarto",
 	"tres quartos",
 	"dois quartos"	

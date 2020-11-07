@@ -20,6 +20,14 @@ done
 echo "Testing the transducer 'converter' with the input 'tests/numero.txt'"
 fstcompose compiled/numero.fst compiled/converter.fst | fstshortestpath | fstproject --project_type=output | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 
+echo "Testing the transducer 'horas' with the input 'tests/uma.txt'"
+fstcompose compiled/uma.fst compiled/horas.fst | fstshortestpath | fstproject --project_type=output | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+echo "Testing the transducer 'horas' with the input 'tests/tres_horas.txt'"
+fstcompose compiled/tres_horas.fst compiled/horas.fst | fstshortestpath | fstproject --project_type=output | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+echo "Testing the transducer 'horas' with the input 'tests/catorze_horas.txt'"
+fstcompose compiled/catorze_horas.fst compiled/horas.fst | fstshortestpath | fstproject --project_type=output | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+echo "Testing the transducer 'horas' with the input 'tests/vinte_e_uma_hora.txt'"
+fstcompose compiled/vinte_e_uma_hora.fst compiled/horas.fst | fstshortestpath | fstproject --project_type=output | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 
 echo "Testing the transducer 'quartos' with the input 'tests/um_quarto.txt'"
 fstcompose compiled/um_quarto.fst compiled/quartos.fst | fstshortestpath | fstproject --project_type=output | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
@@ -36,3 +44,6 @@ echo "Testing the transducer 'minutos' with the input 'tests/vinte_e_oito_minut
 fstcompose compiled/vinte_e_oito_minutos.fst compiled/minutos.fst | fstshortestpath | fstproject --project_type=output | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 echo "Testing the transducer 'minutos' with the input 'tests/quarenta_e_tres.txt'"
 fstcompose compiled/quarenta_e_tres.fst compiled/minutos.fst | fstshortestpath | fstproject --project_type=output | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+
+echo "Testing the transducer 'meias' with the input 'tests/meia.txt'"
+fstcompose compiled/meia.fst compiled/meias.fst | fstshortestpath | fstproject --project_type=output | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
