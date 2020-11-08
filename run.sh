@@ -11,8 +11,6 @@ done
 # text2num
 fstconcat compiled/horas.fst compiled/e.fst compiled/horas+e.fst
 fstconcat compiled/horas+e.fst compiled/minutos.fst compiled/text2num.fst
-#can be done without e? ~dont think so
-#try to do this in one line
 
 # lazy2num
 fstconcat compiled/horas.fst compiled/lazye.fst compiled/horas+le.fst
@@ -23,17 +21,14 @@ fstconcat compiled/horas+le.fst compiled/minutos.fst compiled/lazy2num.fst
 fstproject compiled/horas+e.fst compiled/inputhoras.fst
 fstunion compiled/meias.fst compiled/quartos.fst compiled/meias+quartos
 fstconcat compiled/inputhoras.fst compiled/meias+quartos compiled/rich2text.fst
-#try to do this in one line
 
 # rich2num
-#fstproject compiled/rich2text.fst compiled/rich.fst
-#fstcompose compiled/rich.fst compiled/lazy2num.fst compiled/rich2num.fst
-#fstproject compiled/rich2text.fst compiled/rich.fst
-#fstintersect compiled/rich.fst compiled/lazy2num.fst compiled/rich2num.fst
-#fstunion compiled/lazy2numP.fst compiled/rich2text.fst
+fstarcsort --sort_type=olabel compiled/rich2text.fst compiled/rich2text_sorted.fst
+fstarcsort --sort_type=ilabel compiled/lazy2num.fst compiled/lazy2num_sorted.fst
+fstcompose compiled/rich2text_sorted.fst compiled/lazy2num_sorted.fst compiled/rich2num.fst
 
 # num2text
-#fstinvert compiled/rich2num.fst compiled/num2text.fst
+fstinvert compiled/rich2num.fst compiled/num2text.fst
 # TODO always using the words hora(s) and minuto(s).
 
 for i in compiled/*.fst; do
@@ -64,7 +59,6 @@ fstcompose compiled/vinte_e_tres_hora.fst compiled/horas.fst | fstshortestpath |
 echo "Testing the transducer 'horas' with the input 'tests/vinte_e_tres_horas.txt'"
 fstcompose compiled/vinte_e_tres_horas.fst compiled/horas.fst | fstshortestpath | fstproject --project_type=output | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 
-
 echo "Testing the transducer 'minutos' with the input 'tests/um.txt'"
 fstcompose compiled/um.fst compiled/minutos.fst | fstshortestpath | fstproject --project_type=output | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 echo "Testing the transducer 'minutos' with the input 'tests/dois_minutos.txt'"
@@ -74,15 +68,15 @@ fstcompose compiled/vinte_e_oito_minutos.fst compiled/minutos.fst | fstshortestp
 echo "Testing the transducer 'minutos' with the input 'tests/quarenta_e_tres.txt'"
 fstcompose compiled/quarenta_e_tres.fst compiled/minutos.fst | fstshortestpath | fstproject --project_type=output | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 
+echo "Testing the transducer 'meias' with the input 'tests/meia.txt'"
+fstcompose compiled/meia.fst compiled/meias.fst | fstshortestpath | fstproject --project_type=output | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+
 echo "Testing the transducer 'quartos' with the input 'tests/um_quarto.txt'"
 fstcompose compiled/um_quarto.fst compiled/quartos.fst | fstshortestpath | fstproject --project_type=output | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 echo "Testing the transducer 'quartos' with the input 'tests/dois_quartos.txt'"
 fstcompose compiled/dois_quartos.fst compiled/quartos.fst | fstshortestpath | fstproject --project_type=output | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 echo "Testing the transducer 'quartos' with the input 'tests/tres_quartos.txt'"
 fstcompose compiled/tres_quartos.fst compiled/quartos.fst | fstshortestpath | fstproject --project_type=output | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
-
-echo "Testing the transducer 'meias' with the input 'tests/meia.txt'"
-fstcompose compiled/meia.fst compiled/meias.fst | fstshortestpath | fstproject --project_type=output | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 
 echo "Testing the transducer 'text2num' with the input 'tests/dez_horas_e_quinze.txt'"
 fstcompose compiled/dez_horas_e_quinze.fst compiled/text2num.fst | fstshortestpath | fstproject --project_type=output | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
@@ -101,7 +95,20 @@ fstcompose compiled/dez_e_um_quarto.fst compiled/rich2text.fst | fstshortestpath
 echo "Testing the transducer 'rich2text' with the input 'tests/dez_e_meia.txt'"
 fstcompose compiled/dez_e_meia.fst compiled/rich2text.fst | fstshortestpath | fstproject --project_type=output | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 
-#echo "Testing the transducer 'rich2num' with the input 'tests/dez_e_um_quarto.txt'"
-#fstcompose compiled/dez_e_um_quarto.fst compiled/rich2text.fst | fstshortestpath | fstproject --project_type=output | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
-#echo "Testing the transducer 'rich2num' with the input 'tests/dez_e_meia.txt'"
-#fstcompose compiled/dez_e_meia.fst compiled/rich2text.fst | fstshortestpath | fstproject --project_type=output | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+echo "Testing the transducer 'rich2num' with the input 'tests/dez_e_um_quarto.txt'"
+fstcompose compiled/dez_e_um_quarto.fst compiled/rich2num.fst | fstshortestpath | fstproject --project_type=output | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+echo "Testing the transducer 'rich2num' with the input 'tests/dez_e_meia.txt'"
+fstcompose compiled/dez_e_meia.fst compiled/rich2num.fst | fstshortestpath | fstproject --project_type=output | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+
+echo "Testing the transducer 'num2text' with the input 'tests/1_0_:_1_5.txt'"
+fstcompose compiled/1_0_:_1_5.fst compiled/num2text.fst | fstshortestpath | fstproject --project_type=output | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+echo "Testing the transducer 'num2text' with the input 'tests/0_0_:_0_0.txt'"
+fstcompose compiled/0_0_:_0_0.fst compiled/num2text.fst | fstshortestpath | fstproject --project_type=output | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+echo "Testing the transducer 'num2text' with the input 'tests/0_0_:_3_0.txt'"
+fstcompose compiled/0_0_:_3_0.fst compiled/num2text.fst | fstshortestpath | fstproject --project_type=output | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+echo "Testing the transducer 'num2text' with the input 'tests/0_9_:_0_3.txt'"
+fstcompose compiled/0_9_:_0_3.fst compiled/num2text.fst | fstshortestpath | fstproject --project_type=output | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+echo "Testing the transducer 'num2text' with the input 'tests/1_3_:_2_9.txt'"
+fstcompose compiled/1_3_:_2_9.fst compiled/num2text.fst | fstshortestpath | fstproject --project_type=output | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+echo "Testing the transducer 'num2text' with the input 'tests/2_2_:_4_5.txt'"
+fstcompose compiled/2_2_:_4_5.fst compiled/num2text.fst | fstshortestpath | fstproject --project_type=output | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
