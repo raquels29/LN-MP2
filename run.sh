@@ -25,7 +25,9 @@ fstconcat compiled/inputhoras.fst compiled/meias+quartos compiled/rich2text.fst
 # rich2num
 fstarcsort --sort_type=olabel compiled/rich2text.fst compiled/rich2text_sorted.fst
 fstarcsort --sort_type=ilabel compiled/lazy2num.fst compiled/lazy2num_sorted.fst
-fstcompose compiled/rich2text_sorted.fst compiled/lazy2num_sorted.fst compiled/rich2num.fst
+#does only quartos and meias
+fstcompose compiled/rich2text_sorted.fst compiled/lazy2num_sorted.fst compiled/rich2numA.fst
+fstunion compiled/rich2numA.fst compiled/lazy2num_sorted.fst compiled/rich2num.fst
 
 # num2text
 fstinvert compiled/rich2num.fst compiled/num2text.fst
@@ -99,6 +101,10 @@ echo "Testing the transducer 'rich2num' with the input 'tests/dez_e_um_quarto.t
 fstcompose compiled/dez_e_um_quarto.fst compiled/rich2num.fst | fstshortestpath | fstproject --project_type=output | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 echo "Testing the transducer 'rich2num' with the input 'tests/dez_e_meia.txt'"
 fstcompose compiled/dez_e_meia.fst compiled/rich2num.fst | fstshortestpath | fstproject --project_type=output | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+echo "Testing the transducer 'rich2num' with the input 'tests/dez.txt'"
+fstcompose compiled/dez.fst compiled/rich2num.fst | fstshortestpath | fstproject --project_type=output | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+echo "Testing the transducer 'rich2num' with the input 'tests/dez_horas_e_quinze.txt'"
+fstcompose compiled/dez_horas_e_quinze_minutos.fst compiled/rich2num.fst | fstshortestpath | fstproject --project_type=output | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 
 echo "Testing the transducer 'num2text' with the input 'tests/1_0_:_1_5.txt'"
 fstcompose compiled/1_0_:_1_5.fst compiled/num2text.fst | fstshortestpath | fstproject --project_type=output | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
