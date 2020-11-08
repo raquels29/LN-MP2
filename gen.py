@@ -1,6 +1,8 @@
 
 tests = [
 	"uma",
+	"uma horas",
+	"uma hora",
 	"tres horas",
 	"catorze horas",
 	"vinte e uma hora",
@@ -8,6 +10,10 @@ tests = [
 	"vinte e oito minutos",
 	"quarenta e tres",
 	"dois minutos",
+	"dois minuto",
+	"vinte e tres hora",
+	"vinte e tres horas",
+	"catorze hora",
 	"meia",
 	"um quarto",
 	"tres quartos",
