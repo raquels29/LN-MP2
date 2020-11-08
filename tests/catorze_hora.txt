@@ -1,0 +1,3 @@
+0	1	catorze	catorze
+1	2	hora	hora
+2
