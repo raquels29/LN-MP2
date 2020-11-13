@@ -31,6 +31,10 @@ tests = [
 	"1 0 : 1 5",
 	"1 3 : 2 9",
 	"2 2 : 4 5",
+	"uma",
+	"0 1 : 0 0",
+	"nove e tres quartos",
+	"0 9 : 4 5"
 ]
 
 # for each of the motherfucking symbols above
