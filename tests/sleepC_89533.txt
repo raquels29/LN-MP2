@@ -1,0 +1,6 @@
+0	1	uma	uma
+1	2	hora	hora
+2	3	e	e
+3	4	trinta	trinta
+4	5	minutos	minutos
+5

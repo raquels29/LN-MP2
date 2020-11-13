@@ -23,6 +23,7 @@ tests = [
 	"dez horas e quinze minutos",
 	"dez",
 	"dez e um quarto",
+	"dez horas e um quarto",
 	"dez e meia",
 	"0 0 : 0 0",
 	"0 0 : 3 0",
@@ -30,7 +31,10 @@ tests = [
 	"1 0 : 1 5",
 	"1 3 : 2 9",
 	"2 2 : 4 5",
-	
+	"uma hora e trinta minutos",
+	"nove horas e um quarto",
+	"0 1 : 3 0",
+	"0 9 : 1 5"	
 ]
 
 # for each of the motherfucking symbols above
