@@ -34,8 +34,8 @@
 12	14	uma		1
 12	14	duas	2
 12	14	tres	3
-13  0   hora    eps
+13  0   hora    eps -1
 13  0   eps     eps
-14	0	horas 	eps
+14	0	horas 	eps -1
 14  0   eps     eps
 0

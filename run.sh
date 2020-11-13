@@ -15,7 +15,6 @@ fstconcat compiled/horas+e.fst compiled/minutos.fst compiled/text2num.fst
 # lazy2num
 fstconcat compiled/horas.fst compiled/lazye.fst compiled/horas+le.fst
 fstconcat compiled/horas+le.fst compiled/minutos.fst compiled/lazy2num.fst
-#try to join differently by altering text2num directly 
  
 # rich2text
 fstproject compiled/horas+e.fst compiled/inputhoras.fst
@@ -30,7 +29,6 @@ fstunion compiled/rich2numA.fst compiled/lazy2num_sorted.fst compiled/rich2num.f
 
 # num2text
 fstinvert compiled/rich2num.fst compiled/num2text.fst
-# TODO always using the words hora(s) and minuto(s).
 
 for i in compiled/*.fst; do
 	echo "Creating image: images/$(basename $i '.fst').pdf"
