@@ -57,3 +57,28 @@ fstcompose compiled/wakeupC_89533.fst compiled/rich2num.fst | fstshortestpath | 
 echo "Testing the transducer 'num2text' with the input 'tests/wakeupD_89533.txt'"
 fstcompose compiled/wakeupD_89533.fst compiled/num2text.fst | fstshortestpath | fstproject --project_type=output | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 
+
+#print test results
+echo "Testing the transducer 'rich2num' with the input 'tests/sleepA_89413.txt'"
+fstcompose compiled/sleepA_89413.fst compiled/rich2num.fst compiled/sleepA_89413_output.fst
+fstcompose compiled/sleepB_89413.fst compiled/num2text.fst compiled/sleepB_89413_output.fst
+
+echo "Testing the transducer 'rich2num' with the input 'tests/wakeupA_89413.txt'"
+fstcompose compiled/wakeupA_89413.fst compiled/rich2num.fst compiled/wakeupA_89413_output.fst
+echo "Testing the transducer 'num2text' with the input 'tests/wakeupB_89413.txt'"
+fstcompose compiled/wakeupB_89413.fst compiled/num2text.fst compiled/wakeupB_89413_output.fst
+
+echo "Testing the transducer 'rich2num' with the input 'tests/sleepC_89533.txt'"
+fstcompose compiled/sleepC_89533.fst compiled/rich2num.fst compiled/sleepC_89533_output.fst
+echo "Testing the transducer 'num2text' with the input 'tests/sleepD_89533.txt'"
+fstcompose compiled/sleepD_89533.fst compiled/num2text.fst compiled/sleepD_89533_output.fst
+
+echo "Testing the transducer 'rich2num' with the input 'tests/wakeupC_89533.txt'"
+fstcompose compiled/wakeupC_89533.fst compiled/rich2num.fst compiled/wakeupC_89533_output.fst
+echo "Testing the transducer 'num2text' with the input 'tests/wakeupD_89533.txt'"
+fstcompose compiled/wakeupD_89533.fst compiled/num2text.fst compiled/wakeupD_89533_output.fst
+
+for i in compiled/*.fst; do
+	echo "Creating image: images/$(basename $i '.fst').pdf"
+    fstdraw --portrait --isymbols=syms.txt --osymbols=syms.txt $i | dot -Tpdf > images/$(basename $i '.fst').pdf
+done
