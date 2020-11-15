@@ -30,12 +30,6 @@ fstunion compiled/rich2numA.fst compiled/lazy2num_sorted.fst compiled/rich2num.f
 # num2text
 fstinvert compiled/rich2num.fst compiled/num2text.fst
 
-for i in compiled/*.fst; do
-	echo "Creating image: images/$(basename $i '.fst').pdf"
-    fstdraw --portrait --isymbols=syms.txt --osymbols=syms.txt $i | dot -Tpdf > images/$(basename $i '.fst').pdf
-done
-
-
 echo "Testing the transducer 'converter' with the input 'tests/numero.txt'"
 fstcompose compiled/numero.fst compiled/converter.fst | fstshortestpath | fstproject --project_type=output | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 
@@ -121,7 +115,7 @@ fstcompose compiled/2_2_:_4_5.fst compiled/num2text.fst | fstshortestpath | fstp
 ############################
 
 echo "Testing the transducer 'rich2num' with the input 'tests/sleepA_89413.txt'"
-fstcompose compiled/sleepA_89413.fst compiled/rich2num.fst > tests/sleepA_89413_output.fst
+fstcompose compiled/sleepA_89413.fst compiled/rich2num.fst | fstshortestpath | fstproject --project_type=output | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 echo "Testing the transducer 'num2text' with the input 'tests/sleepB_89413.txt'"
 fstcompose compiled/sleepB_89413.fst compiled/num2text.fst | fstshortestpath | fstproject --project_type=output | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 
@@ -140,7 +134,12 @@ fstcompose compiled/wakeupC_89533.fst compiled/rich2num.fst | fstshortestpath | 
 echo "Testing the transducer 'num2text' with the input 'tests/wakeupD_89533.txt'"
 fstcompose compiled/wakeupD_89533.fst compiled/num2text.fst | fstshortestpath | fstproject --project_type=output | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 
-for i in tests/*.fst; do
+for i in tests/*.txt; do
+	echo "Compiling: $i"
+    fstcompile --isymbols=syms.txt --osymbols=syms.txt $i | fstarcsort > compiled/$(basename $i ".txt").fst
+done
+
+for i in compiled/*.fst; do
 	echo "Creating image: images/$(basename $i '.fst').pdf"
     fstdraw --portrait --isymbols=syms.txt --osymbols=syms.txt $i | dot -Tpdf > images/$(basename $i '.fst').pdf
 done
